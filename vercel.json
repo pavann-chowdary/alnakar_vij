@@ -3,7 +3,7 @@
     
     "builds": [
       {
-        "src": "alankar_sweets/package.json",
+        "src": "alankar_vijayawada/package.json",
         "use": "@vercel/static-build",
         "config": {
           "distDir": "dist"
