@@ -1,0 +1,32 @@
+{
+    "version": 2,
+    
+    "builds": [
+      {
+        "src": "alankar_sweets/package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
+        }
+      },
+      {
+        "src": "api/index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/orders",
+        "dest": "/api/index.js"
+      },
+      {
+        "src": "/orders/(.*)",
+        "dest": "api/index.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "dist/$1"
+      }
+    ]
+   
+  }
