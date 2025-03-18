@@ -1,0 +1,86 @@
+import React from 'react'
+import Button from '@mui/material/Button'
+import {useNavigate} from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
+import Box from '@mui/material/Box'
+
+
+
+const OrderConfirmationpage = () => {
+    
+    const navigate=useNavigate();
+    const location = useLocation();
+    const selectedItems = location.state?.selectedItems;
+
+    const HandleSignout=()=>{
+        navigate("/");
+    }
+
+    const HandleGoback=()=>{
+        navigate("/welcome");
+      }
+
+
+  return (
+    <div>
+        <p>
+            this is the order confirmation page!
+        </p>
+        <Button 
+        style={{
+          position:'fixed',
+          bottom:'10px',
+          right:'10px',
+          zIndex:100
+        }}
+        onClick={HandleGoback}
+      >
+        Go back
+      </Button>
+        <Button 
+        style={{
+          position:'fixed',
+          top:'10px',
+          right:'10px',
+          zIndex:100
+        }}
+        onClick={HandleSignout}
+      >
+        Sign Out
+      </Button>
+      
+      
+      {selectedItems && selectedItems.length > 0 ? 
+        ( 
+            <Box 
+                style={{ 
+                    paddingTop: "20px", 
+                    display: "flex", 
+                    flexDirection:"column",
+                    border: '1px dashed grey',
+                    justifyContent: "center", 
+                    alignItems: "center", 
+                    // minHeight: "calc(100vh - 10px)" // Ensure minimum height to center vertically
+                  }}>
+                {selectedItems.map((sitem) => (
+                    <>
+                    <p>{sitem.name}<br/>
+                    {sitem.price}<br/>
+                    {sitem.quantity}</p>
+                    </>
+                
+                ))
+                }
+            </Box>
+        ) : 
+        
+        (
+            <p>No items selected.</p>
+        )
+        
+      }
+    </div>
+  )
+}
+
+export default OrderConfirmationpage
